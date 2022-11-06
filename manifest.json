@@ -14,11 +14,18 @@
   "permissions": [
     "tabs",
     "https://www.instagram.com/abhinavsaraswatt/",
-    "storage"
+    "https://www.instagram.com/abhinavsaraswatt/followers/",
+    "https://www.instagram.com/abhinavsaraswatt/p/*",
+    "storage",
+    "notifications"
   ],
   "content_scripts": [
     {
-      "matches": ["https://www.instagram.com/abhinavsaraswatt/"],
+      "matches": [
+        "https://www.instagram.com/abhinavsaraswatt/",
+        "https://www.instagram.com/abhinavsaraswatt/followers/",
+        "https://www.instagram.com/abhinavsaraswatt/p/*"
+      ],
       "js": ["content.js", "jquery-3.6.1.js"]
     }
   ],
