@@ -1,0 +1,26 @@
+{
+  "manifest_version": 2,
+  "name": "Instagram Monitoring",
+  "version": "1.0",
+  "description": "It will monitor how many people out of followers likes and viewed my instagram story.",
+  "page_action": {
+    "default_popup": "popup.html",
+    "default_title": "Instagram Monitoring"
+  },
+  "background": {
+    "scripts": ["eventPage.js"],
+    "persistent": false
+  },
+  "permissions": [
+    "tabs",
+    "https://www.instagram.com/abhinavsaraswatt/",
+    "storage"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://www.instagram.com/abhinavsaraswatt/"],
+      "js": ["content.js", "jquery-3.6.1.js"]
+    }
+  ],
+  "options_page": "options.html"
+}
