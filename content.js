@@ -65,4 +65,68 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
       i = i + 1;
     }, 5000);
   }
+
+  if (request.todo == "doCollectLikes") {
+    let arrCollected = [];
+    let i = 0;
+
+    let prevScrollHeight;
+    const scrollIntervalFunc = setInterval(() => {
+      if (i == 0) {
+        document.documentElement.scrollBy(
+          0,
+          document.getElementsByClassName("xh8yej3")[3].scrollHeight - 0
+        );
+      } else {
+        document.documentElement.scrollBy(
+          0,
+          document.getElementsByClassName("xh8yej3")[3].scrollHeight -
+            prevScrollHeight
+        );
+      }
+      console.log(prevScrollHeight);
+
+      if (
+        document.getElementsByClassName("xh8yej3")[3].scrollHeight -
+          prevScrollHeight ==
+        0
+      ) {
+        clearInterval(scrollIntervalFunc);
+        console.log("scroll over!");
+
+        setTimeout(function () {
+          let likes = document
+            .getElementsByClassName("xh8yej3")[3]
+            .innerText.split(/Follow(ing)?/)
+            .map((ele) => {
+              if (ele?.includes("abhinavsaraswatt")) {
+                console.debug(ele);
+                return ele.replace("\nabhinavsaraswatt\nAbhinav Saraswat", "");
+              } else {
+                return ele;
+              }
+            }) // it will split on basis of word 'follow' or 'following'
+            .filter(function (element) {
+              return ![undefined, "ing"].includes(element);
+            });
+
+          console.log(likes);
+
+          for (let i = 0; i < likes.length - 1; i++) {
+            const ele = `${likes[i].replace("\n", "").replace("\n", ":")}`;
+            arrCollected.push(ele);
+          }
+
+          console.log(arrCollected);
+          chrome.runtime.sendMessage({
+            todo: "addCollectedPostLikes",
+            addLikes: arrCollected,
+          });
+        }, 2000);
+      }
+      prevScrollHeight =
+        document.getElementsByClassName("xh8yej3")[3].scrollHeight;
+      i = i + 1;
+    }, 5000);
+  }
 });

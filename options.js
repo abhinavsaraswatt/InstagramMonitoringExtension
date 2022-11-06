@@ -6,4 +6,11 @@ $(function () {
       $("#followers-list").append(`<p>${strg.igFollowers[i]}</p>`);
     }
   });
+  chrome.storage.sync.get("igPostLikes", function (strg) {
+    for (let i = 0; i < strg.igPostLikes.length; i++) {
+      console.log(strg.igPostLikes[i]);
+      console.log("hi");
+      $("#likes-list").append(`<p>${strg.igPostLikes[i]}</p>`);
+    }
+  });
 });

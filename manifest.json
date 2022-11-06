@@ -15,7 +15,7 @@
     "tabs",
     "https://www.instagram.com/abhinavsaraswatt/",
     "https://www.instagram.com/abhinavsaraswatt/followers/",
-    "https://www.instagram.com/abhinavsaraswatt/p/*",
+    "https://www.instagram.com/p/*",
     "storage",
     "notifications"
   ],
@@ -24,7 +24,7 @@
       "matches": [
         "https://www.instagram.com/abhinavsaraswatt/",
         "https://www.instagram.com/abhinavsaraswatt/followers/",
-        "https://www.instagram.com/abhinavsaraswatt/p/*"
+        "https://www.instagram.com/p/*"
       ],
       "js": ["content.js", "jquery-3.6.1.js"]
     }

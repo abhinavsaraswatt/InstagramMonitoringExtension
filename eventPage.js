@@ -11,9 +11,21 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         type: "basic",
         iconUrl: "india.png",
         title: "Followers Added",
-        message: `You have added ${request.addFollowers.length} links!`,
+        message: `You have added ${request.addFollowers.length} followers!`,
       };
       chrome.notifications.create("followersAddedNotif", notifOptions);
+    });
+  }
+
+  if (request.todo == "addCollectedPostLikes") {
+    chrome.storage.sync.set({ igPostLikes: request.addLikes }, function () {
+      var notifOptions = {
+        type: "basic",
+        iconUrl: "india.png",
+        title: "Post Likes Added",
+        message: `You have added ${request.addLikes.length} likes!`,
+      };
+      chrome.notifications.create("postLikesAddedNotif", notifOptions);
     });
   }
 });
